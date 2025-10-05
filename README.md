@@ -8,7 +8,7 @@ MUSZK016L Alkalmazások fejlesztése projekt labor 1.
 
 **Konzultáció:**
 - 2025.09.28 09.00-13:00
-- 2025.10.16 09.00-13:00
+- 2025.10.05 09.00-13:00
 
 **Linkek**
   - [Tananyag](https://drive.google.com/drive/folders/1bZBH-ueUFu7J76GVBjMadBOi_TOp2XZk?usp=sharing)
