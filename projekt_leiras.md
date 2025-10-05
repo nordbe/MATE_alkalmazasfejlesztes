@@ -7,6 +7,12 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 
 ## Projekt technikai részletei:
 **Programozási nyelv:** Python
+
 **Fejlesztői környezet:** PyCharm GitHub integrációval
-**Github repo**: 
+
+**Github repo**: [https://github.com/nordbe/MATE_alkalmazasfejlesztes](https://github.com/nordbe/MATE_alkalmazasfejlesztes)
+
+**Használt csomagok:** 
+- tkinter
+- random
 
