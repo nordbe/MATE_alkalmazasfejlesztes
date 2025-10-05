@@ -1,4 +1,4 @@
-# Vizsga projekt
+# Vizsga projekt - Biró László Norbert NK: A19AE6
 
 ## Projekt rövid ismertetetése
 
