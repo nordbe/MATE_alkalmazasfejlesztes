@@ -66,3 +66,13 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
     - `balra mozgatás [2,4,2,0] » [2,4,2,0]`
     - nincs változás, mert egyik cella sem tud mozogni
 
+## Fejlesztési dokumentáció
+***2025.10.12***
+
+### Program struktúra
+**Könyvtár:** 2048_jatek
+- `main.py`: fő fájl, játék indítása
+- `game.py`: a játék logikája és UI
+- `constants.py`: konstanst értékek
+
+
