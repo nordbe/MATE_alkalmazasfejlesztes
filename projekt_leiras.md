@@ -73,4 +73,5 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 - Szükséges modulok importálása: `random` `pygame` `math`
 - UI-hoz szükséges változók/konstanstok létrehozása (méret, szín, betűtípus)
 - Játék ablak futtasához szükséges alapkódok megírása
-
+- `draw` függvény megírása (háttér frissítése), `main` függvény frissítése
+- `draw_grid` függvény megírása rács létrehozásához

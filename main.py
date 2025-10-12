@@ -29,6 +29,28 @@ pygame.display.set_caption("2048 játék | Biró László Norbert  NKA19AE6")
 
 #Játékmenet inicializálása, futtatása
 
+
+# Rács kirajzolása
+def draw_grid(window):
+     
+     for row in range(1,ROWS):
+          y = row * RECT_HEIGHT
+          pygame.draw.line(window, OUTLINE_COLOR, (0,y),(WIDTH,y), OUTLINE_THICKNESS)
+
+     for row in range(1,COLS):
+          x = row * RECT_WIDTH
+          pygame.draw.line(window, OUTLINE_COLOR, (x,0),(x,HEIGHT), OUTLINE_THICKNESS)
+    
+     
+     pygame.draw.rect(window, OUTLINE_COLOR, (0,0, WIDTH, HEIGHT), OUTLINE_THICKNESS)
+
+# Ablak frissítése éa kirajzolása
+def draw(window):
+     window.fill(BACKGROUND_COLOR)
+     draw_grid(window)
+     pygame.display.update()
+     
+# Fő program
 def main(window):
     clock = pygame.time.Clock()
     run = True
@@ -40,11 +62,15 @@ def main(window):
                 if event.type == pygame.QUIT:
                     run = False
                 break
+            
+            draw(window)
+
+
 
     pygame.quit()
 
 
-
+# Program indítása
 if __name__ == "__main__":
     main(WINDOW)
 
