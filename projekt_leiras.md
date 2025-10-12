@@ -13,8 +13,9 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 **Github repo**: [https://github.com/nordbe/MATE_alkalmazasfejlesztes](https://github.com/nordbe/MATE_alkalmazasfejlesztes)
 
 **Használt csomagok:** 
-- tkinter
+- math
 - random
+- pygame
 
 ### Funkcionális leírás
 
@@ -69,10 +70,7 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 ## Fejlesztési dokumentáció
 ***2025.10.12***
 
-### Program struktúra
-**Könyvtár:** 2048_jatek
-- `main.py`: fő fájl, játék indítása
-- `game.py`: a játék logikája és UI
-- `constants.py`: konstanst értékek
-
+- Szükséges modulok importálása: `random` `pygame` `math`
+- UI-hoz szükséges változók/konstanstok létrehozása (méret, szín, betűtípus)
+- Játék ablak futtasához szükséges alapkódok megírása
 
