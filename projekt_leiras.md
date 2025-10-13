@@ -73,5 +73,22 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 - Szükséges modulok importálása: `random` `pygame` `math`
 - UI-hoz szükséges változók/konstanstok létrehozása (méret, szín, betűtípus)
 - Játék ablak futtasához szükséges alapkódok megírása
-- `draw` függvény megírása (háttér frissítése), `main` függvény frissítése
-- `draw_grid` függvény megírása rács létrehozásához
+- `draw()` függvény megírása (háttér frissítése), `main()` függvény frissítése
+- `draw_grid()` függvény megírása rács létrehozásához
+
+***2025.10.13***
+
+- `Tile(csempe)` osztály definiálása:
+  - `COLORS`: lista, amely tuplek-ben tartalmazza a színkódokat
+  - konstruktor létrehozása
+  - `get_color()` függvény:  csempe színék meghatározása a `COLORS` listából. Index lekérésée logartimus használata, mert:
+    - 2 érték esetén » 0. index
+    - 4 érték esetén » 1. index
+    - 8 érték esetén » 3. index
+    - 16 érték esetén » 4. index
+    - 
+  - `draw()` függvény: kirajzolja a rács megfelelő cellájába a csempét, majd annak értékét elhelyezi a közepére
+  - `move()` függvény: 
+  - `set_pos()` függvény:
+- `draw()` függvény frissítése, paraméterlista bővítése csempe rajzolásával
+- `main()`függvény bővítése csempe kirajzolására
