@@ -92,3 +92,7 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
   - `set_pos()` függvény:
 - `draw()` függvény frissítése, paraméterlista bővítése csempe rajzolásával
 - `main()`függvény bővítése csempe kirajzolására
+
+***2025.10.17***
+
+- `generate_tiles()` függvény elkészítése a kezdő értékek legenerálásához
