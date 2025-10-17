@@ -102,10 +102,23 @@ def draw(window, tiles):
 
 #Csempék generálása
 
+def get_rand_pos(tiles):
+    row = None
+    col = None
+
+    while True:
+        row = random.randrange(0,ROWS)
+        col = random.randrange(0,COLS)
+
+        if f"{row}{col}" not in tiles:
+            break
+
+    return row, col
+
 def generate_tiles():
     tiles = {}
     for _ in range(2):
-        row, col = fuggveny_poziciora(tiles)
+        row, col = get_rand_pos(tiles)
         tiles[f"{row}{col}"] = Tile(2, row, col)
 
     return tiles
@@ -116,7 +129,7 @@ def main(window):
     run = True
 
     #Példa, átmeneti - majd töröld b++++
-    tiles = {}
+    tiles = generate_tiles()
 
     while run:
             clock.tick(FPS)

@@ -96,3 +96,4 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 ***2025.10.17***
 
 - `generate_tiles()` függvény elkészítése a csempék legenáráláshoz, tuple-t használok (`tiles ={}`)
+- `get_rand_pos()` függvény elkészítése, és a `generate_tiles()` függvény frissítése
