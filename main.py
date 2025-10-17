@@ -100,15 +100,23 @@ def draw(window, tiles):
 
      pygame.display.update()
 
+#Csempék generálása
+
+def generate_tiles():
+    tiles = {}
+    for _ in range(2):
+        row, col = fuggveny_poziciora(tiles)
+        tiles[f"{row}{col}"] = Tile(2, row, col)
+
+    return tiles
+
 # Fő program
 def main(window):
     clock = pygame.time.Clock()
     run = True
 
     #Példa, átmeneti - majd töröld b++++
-    tiles = {"00": Tile(4,0,0),
-             "20": Tile(128,2,0),
-             "02" : Tile(64,1,3)}
+    tiles = {}
 
     while run:
             clock.tick(FPS)
