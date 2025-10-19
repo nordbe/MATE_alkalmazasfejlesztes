@@ -124,7 +124,28 @@ def generate_tiles():
 
 #Csempék mozgatás
 def move_tiles(window, tiles, clock, direction):
-    pass
+    updated = True
+    blocks = set()
+
+    if direction == "left":
+        sort_func = lambda x: x.col
+        reverse = False
+        delta =(-MOV_SPEED,0)
+        boundary_check = lambda tile: tile.col == 0
+        get_next_tile = lambda tile: tiles.get(f"{tile.row}{tile.col-1}")
+        merge_check = lambda tile, next_tile: tile.x > next_tile.x + MOV_SPEED
+        move_check = lambda tile, next_tile: tile.x > next_tile.x + RECT_WIDTH + MOV_SPEED
+        ceil = True
+
+
+    elif direction == "right":
+        pass
+
+    elif direction == "up":
+        pass
+
+    elif direction == "down":
+        pass
 
 # Fő program
 def main(window):
