@@ -110,5 +110,14 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
     - Egymés melletti cellákban lévő nem üres csempék kezelése
     - Precedencia sorrend meghatározása a mozgásnál
 - `move_tiles()` függvény megírása, amely felel  a csempék mozgatásáért
+  - `if/elseif` feltételben használt változók, lambda függvények:
+    - `sort_func`: meghatározza hogyan rendezzük a csempéket (oszlop szerint jobbra/balra, sor szerint le/fel)
+    - `reverse`: megadja a rendezés irányát
+    - `delta`: a csempa egy lépésben történő elmozdulásának vektora
+    - `boundary_check`: ellenőrzi, hogy a pálya szélén vagyunk-e?
+    - `get_next_tile`: legközelebbi csempe keresése a mozgás irányába
+    - `merge_check`: Ellenőrzi, hogy a mozgó és szomszédos csempe elég közel van-e egymáshoz?
+    - `move_check`: Ellenőrzi, hogy a két csempe között van-e még hely, hogy a mozgó csempe tovább haladjon
+    - `ceil`: Meghatározza, hogy a csempe rácsnégyzetének kiszámításához a koordinátákat felfelé (ceil) vagy lefelé (floor) kerekítsük-e
 
  
