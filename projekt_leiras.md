@@ -97,3 +97,18 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 
 - `generate_tiles()` függvény elkészítése a csempék legenáráláshoz, tuple-t használok (`tiles ={}`)
 - `get_rand_pos()` függvény elkészítése, és a `generate_tiles()` függvény frissítése
+- `main()` függvény frissítése.
+
+***2025.10.17***
+- Csempék mozgatásának alogoritmizálása, elvi működés kitalálása
+  - Lehetséges alapesetek lemodellezése: 
+    - V1: X1Y2 Cella értéke 2, mozgás balra üres cella » OK
+    - V2: X1Y2 Cella értéke 2, X0Y2 értéke: 4 » NOK
+    - V3: X1Y2 Cella értéke 2, X0Y2 értéke: 2 » OK » X0Y2 cella értékének növelése, X1Y2 cella "törlése "
+    - etc..
+  - Lehetséges összetett esetek lemodellezése:
+    - Egymés melletti cellákban lévő nem üres csempék kezelése
+    - Precedencia sorrend meghatározása a mozgásnál
+- `move_tiles()` függvény megírása, amely felel  a csempék mozgatásáért
+
+ 

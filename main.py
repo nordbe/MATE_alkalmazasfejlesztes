@@ -101,7 +101,6 @@ def draw(window, tiles):
      pygame.display.update()
 
 #Csempék generálása
-
 def get_rand_pos(tiles):
     row = None
     col = None
@@ -122,6 +121,10 @@ def generate_tiles():
         tiles[f"{row}{col}"] = Tile(2, row, col)
 
     return tiles
+
+#Csempék mozgatás
+def move_tiles(window, tiles, clock, direction):
+    pass
 
 # Fő program
 def main(window):
