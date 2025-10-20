@@ -99,7 +99,8 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 - `get_rand_pos()` függvény elkészítése, és a `generate_tiles()` függvény frissítése
 - `main()` függvény frissítése.
 
-***2025.10.17***
+***2025.10.19***
+
 - Csempék mozgatásának alogoritmizálása, elvi működés kitalálása
   - Lehetséges alapesetek lemodellezése: 
     - V1: X1Y2 Cella értéke 2, mozgás balra üres cella » OK
@@ -120,4 +121,11 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
     - `move_check`: Ellenőrzi, hogy a két csempe között van-e még hely, hogy a mozgó csempe tovább haladjon
     - `ceil`: Meghatározza, hogy a csempe rácsnégyzetének kiszámításához a koordinátákat felfelé (ceil) vagy lefelé (floor) kerekítsük-e
 
+ ***2025.10.20***
  
+- `move_tiles()` függvény megírásának folytatása
+- `Tile.move()` függvény kiegészítése
+- `Tile.set_pos()` függvény megírása
+- `update_tiles()` függvény megírása
+- `end_move()` függvény megírása
+- `main()` függvény frissítésa a gomblenyomás érzékelesévéel és a `move_tiles()` függvény meghívásával
