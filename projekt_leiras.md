@@ -127,5 +127,12 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 - `Tile.move()` függvény kiegészítése
 - `Tile.set_pos()` függvény megírása
 - `update_tiles()` függvény megírása
-- `end_move()` függvény megírása
+- `end_tiles()` függvény megírása
 - `main()` függvény frissítésa a gomblenyomás érzékelesévéel és a `move_tiles()` függvény meghívásával
+
+ ***2025.10.23***
+
+- `move_tiles()` függvény kiegészítése a többi mozgatási iránnyal.
+- tesztelés és hibajavítás:
+  - A csempék mozgása elcsúszik 
+    - `Tile.move()` függvényben volt a hiba, `self.y = delta[1]` helyesen `self.y += delta[1]`

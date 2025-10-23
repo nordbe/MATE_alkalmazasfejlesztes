@@ -79,7 +79,7 @@ class Tile:
 
     def move(self, delta):
         self.x += delta[0]
-        self.y = delta[1]
+        self.y += delta[1]
 
 
 
@@ -146,13 +146,38 @@ def move_tiles(window, tiles, clock, direction):
         ceil = True
 
     elif direction == "right":
-        pass
+        sort_func = lambda x: x.col
+        reverse = True
+        delta = (MOV_SPEED, 0)
+        boundary_check = lambda tile: tile.col == COLS -1
+        get_next_tile = lambda tile: tiles.get(f"{tile.row}{tile.col + 1}")
+        merge_check = lambda tile, next_tile: tile.x < next_tile.x - MOV_SPEED
+        move_check = lambda tile, next_tile: tile.x + RECT_WIDTH + MOV_SPEED < next_tile.x
+        ceil = False
 
     elif direction == "up":
-        pass
+        sort_func = lambda x: x.row
+        reverse = False
+        delta = (0, -MOV_SPEED)
+        boundary_check = lambda tile: tile.row == 0
+        get_next_tile = lambda tile: tiles.get(f"{tile.row - 1}{tile.col}")
+        merge_check = lambda tile, next_tile: tile.y > next_tile.y + MOV_SPEED
+        move_check = (
+            lambda tile, next_tile: tile.y > next_tile.y + RECT_HEIGHT + MOV_SPEED
+        )
+        ceil = True
 
     elif direction == "down":
-        pass
+        sort_func = lambda x: x.row
+        reverse = True
+        delta = (0, MOV_SPEED)
+        boundary_check = lambda tile: tile.row == ROWS - 1
+        get_next_tile = lambda tile: tiles.get(f"{tile.row + 1}{tile.col}")
+        merge_check = lambda tile, next_tile: tile.y < next_tile.y - MOV_SPEED
+        move_check = (
+            lambda tile, next_tile: tile.y + RECT_HEIGHT + MOV_SPEED < next_tile.y
+        )
+        ceil = False
 
     while updated:
         clock.tick(FPS)
@@ -183,9 +208,10 @@ def move_tiles(window, tiles, clock, direction):
             updated = True
 
         update_tiles (window, tiles, sorted_tiles)
-        return end_move(tiles)
 
-def end_move(tiles):
+    return end_tiles(tiles)
+
+def end_tiles(tiles):
     if len(tiles) == 16:
         return "lost"
 
