@@ -136,3 +136,5 @@ A pontok záma mindig az összevont mezők pontértékével növekszik. Az egym�
 - tesztelés és hibajavítás:
   - A csempék mozgása elcsúszik 
     - `Tile.move()` függvényben volt a hiba, `self.y = delta[1]` helyesen `self.y += delta[1]`
+- pontszámok kiíratásának megvalósítása:
+  - Tábla alján egy 100 px széles csík beszúrása: 'WINDOW = pygame.display.set_mode((WIDTH,HEIGHT+100))'

@@ -24,7 +24,7 @@ FONT_COLOR = (119,110,101)
 FONT = pygame.font.SysFont("comicsans", 60, bold=True)
 MOV_SPEED = 20
 
-WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
+WINDOW = pygame.display.set_mode((WIDTH,HEIGHT+100))
 pygame.display.set_caption("2048 játék | Biró László Norbert  NKA19AE6")
 
 #Játékmenet inicializálása, futtatása
