@@ -9,22 +9,31 @@ pygame.init()
 
 #Program szintű változók, konstansok létrehozása
 FPS = 60
-WIDTH, HEIGHT = 800, 800
+#WIDTH, HEIGHT = 800, 800
+BOARD_WIDTH, BOARD_HEIGHT = 800, 800
+SCORE_PANEL_HEIGHT = 100
+WIDTH = BOARD_WIDTH
+HEIGHT = BOARD_HEIGHT + SCORE_PANEL_HEIGHT
 ROWS = 4
 COLS = 4
 
-RECT_HEIGHT = HEIGHT // ROWS
-RECT_WIDTH = WIDTH // COLS
+RECT_HEIGHT = BOARD_HEIGHT // ROWS
+RECT_WIDTH = BOARD_WIDTH // COLS
+
 
 OUTLINE_COLOR = (187, 170, 160)
 OUTLINE_THICKNESS = 10
 BACKGROUND_COLOR = (205, 192, 180)
 FONT_COLOR = (119,110,101)
+BUTTON_COLOR = (205, 192, 180)
+BUTTON_FONT_COLOR = (255,255,255)
+NEW_GAME_BUTTON_RECT = pygame.Rect(30, BOARD_HEIGHT + 25 , 200, 50)
 
 FONT = pygame.font.SysFont("comicsans", 60, bold=True)
+SCORE_FONT = pygame.font.SysFont("comicsans", 35, bold=True)
 MOV_SPEED = 20
 
-WINDOW = pygame.display.set_mode((WIDTH,HEIGHT+100))
+WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("2048 játék | Biró László Norbert  NKA19AE6")
 
 #Játékmenet inicializálása, futtatása
@@ -88,23 +97,46 @@ def draw_grid(window):
      
      for row in range(1,ROWS):
           y = row * RECT_HEIGHT
-          pygame.draw.line(window, OUTLINE_COLOR, (0,y),(WIDTH,y), OUTLINE_THICKNESS)
+          pygame.draw.line(window, OUTLINE_COLOR, (0,y),(BOARD_WIDTH,y), OUTLINE_THICKNESS)
 
      for row in range(1,COLS):
           x = row * RECT_WIDTH
-          pygame.draw.line(window, OUTLINE_COLOR, (x,0),(x,HEIGHT), OUTLINE_THICKNESS)
-    
+          pygame.draw.line(window, OUTLINE_COLOR, (x,0),(x,BOARD_HEIGHT), OUTLINE_THICKNESS)
      
-     pygame.draw.rect(window, OUTLINE_COLOR, (0,0, WIDTH, HEIGHT), OUTLINE_THICKNESS)
+     pygame.draw.rect(window, OUTLINE_COLOR, (0,0, BOARD_WIDTH, BOARD_HEIGHT), OUTLINE_THICKNESS)
+
 
 # Ablak frissítése éa kirajzolása
-def draw(window, tiles):
+def draw(window, tiles, current_score, high_score):
      window.fill(BACKGROUND_COLOR)
 
      for tile in tiles.values():
          tile.draw(window)
 
      draw_grid(window)
+
+     #Eredményjelző panel háttere
+     score_panel_y = BOARD_HEIGHT
+     pygame.draw.rect(window, OUTLINE_COLOR, (0, score_panel_y, WIDTH, SCORE_PANEL_HEIGHT))
+
+     #"Új játék" gomb megrajzolása
+     pygame.draw.rect(window, BUTTON_COLOR, NEW_GAME_BUTTON_RECT, border_radius=5)
+     btn_text = SCORE_FONT.render("Új játék", 1, BUTTON_FONT_COLOR)
+     window.blit(
+         btn_text,
+         (NEW_GAME_BUTTON_RECT.x + (NEW_GAME_BUTTON_RECT.width/2 - btn_text.get_width()/2),
+          NEW_GAME_BUTTON_RECT.y + (NEW_GAME_BUTTON_RECT.height/2 - btn_text.get_height()/2))
+     )
+
+
+     #Pontszám kiíratása
+     score_text = SCORE_FONT.render(f"Pontszám: {current_score}", 1, FONT_COLOR)
+     high_score_text = SCORE_FONT.render(f"Rekord: {high_score}", 1, FONT_COLOR)
+
+     window.blit(score_text, (WIDTH-score_text.get_width()-30, score_panel_y + 15))
+     window.blit(high_score_text, (WIDTH-high_score_text.get_width()-30, score_panel_y + 55))
+
+
 
      pygame.display.update()
 
@@ -131,7 +163,7 @@ def generate_tiles():
     return tiles
 
 #Csempék mozgatás
-def move_tiles(window, tiles, clock, direction):
+def move_tiles(window, tiles, clock, direction, current_score, high_score):
     updated = True
     blocks = set()
 
@@ -207,7 +239,7 @@ def move_tiles(window, tiles, clock, direction):
             tile.set_pos(ceil)
             updated = True
 
-        update_tiles (window, tiles, sorted_tiles)
+        update_tiles(window, tiles, sorted_tiles, current_score, high_score) #<-- Bővítés
 
     return end_tiles(tiles)
 
@@ -220,13 +252,12 @@ def end_tiles(tiles):
     return "continue"
 
 
-def update_tiles(window, tiles, sorted_tiles):
+def update_tiles(window, tiles, sorted_tiles, current_score, high_score):
     tiles.clear()
     for tile in sorted_tiles:
         tiles[f"{tile.row}{tile.col}"] = tile
 
-    draw(window,tiles)
-
+    draw(window,tiles, current_score, high_score) # <-- Bővítés
 
 
 # Fő program
@@ -235,27 +266,46 @@ def main(window):
     run = True
 
     #Példa, átmeneti - majd töröld b++++
+    high_score = 0
     tiles = generate_tiles()
 
     while run:
             clock.tick(FPS)
+
+            # «--- AKTUÁLIS PONTSZÁM- ÚJ SZEKCIÓ ---»
+
+            current_score = 0
+            if tiles:
+                current_score = max(tile.value for tile in tiles.values())
+
+            if current_score > high_score:
+                high_score = current_score
+            # «--- ÚJ SZEKCIÓ VÉGE ---»
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
                     break
 
+                # «--- ÚJ JÁTÉK GOMB ÉRZÉKELÉSE - ÚJ SZEKCIÓ ---»
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if NEW_GAME_BUTTON_RECT.collidepoint(event.pos):
+                        tiles = generate_tiles()
+
+                # «--- ÚJ SZEKCIÓ VÉGE ---»
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
-                        move_tiles(window, tiles, clock, "left" )
+                        move_tiles(window, tiles, clock, "left", current_score, high_score )
                     if event.key == pygame.K_RIGHT:
-                        move_tiles(window, tiles, clock, "right" )
+                        move_tiles(window, tiles, clock, "right", current_score, high_score )
                     if event.key == pygame.K_UP:
-                        move_tiles(window, tiles, clock, "up" )
+                        move_tiles(window, tiles, clock, "up", current_score, high_score )
                     if event.key == pygame.K_DOWN:
-                        move_tiles(window, tiles, clock, "down" )
+                        move_tiles(window, tiles, clock, "down", current_score, high_score )
 
-            draw(window, tiles)
+            draw(window, tiles, current_score, high_score)
 
     pygame.quit()
 
